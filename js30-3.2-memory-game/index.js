@@ -6,7 +6,12 @@ const btnNewGame = document.querySelector('.btn-close');
 const modalWindow = document.querySelector('.modal-result-wrapper');
 const text = document.querySelector('.text')
 
-let player
+let player 
+
+(function () {
+  player = prompt("What is you name?", "Player");
+})();
+
 let move = 0
 let hasFlippedCard = false;
 let lockBoard = false;
@@ -31,7 +36,8 @@ function flipCard() {
   move++;
   console.log(move)
   moves.innerHTML = `Moves: ${move}`
-  checkForMatch();
+  setTimeout(checkForMatch, 300);
+  //checkForMatch();
 }
 
 function checkForMatch() {
@@ -40,15 +46,25 @@ function checkForMatch() {
     totalChecked++
     console.log(`совпадения: ${totalChecked}`)
   if(totalChecked == 15) {
-    console.log('Winner');
-    modalWindow.style.display = "block"
-    stopTime();
-    text.innerHTML = `<p>You did it!!!</p><p></p><p>You completed the game in ${move} moves.</p><p></p><p>Will you try again?</p>`
-    recordLastScore()
+    //console.log('Winner');
+    //modalWindow.style.display = "block"
+    //stopTime();
+    //text.innerHTML = `<p>You did it!!!</p><p></p><p>You completed the game in ${move} moves.</p><p></p><p>Will you try again?</p>`
+    //recordLastScore()
+    win()
   }
     return;
   }
   unflipCards();
+}
+
+
+function win() {
+  console.log('Winner');
+    modalWindow.style.display = "block"
+    stopTime();
+    text.innerHTML = `<p>You did it!!!</p><p></p><p>You completed the game in ${move} moves.</p><p></p><p>Will you try again?</p>`
+    recordLastScore()
 }
 
 function disableCards() {
@@ -71,12 +87,12 @@ function resetBoard() {
   [firstCard, secondCard] = [null, null];
 }
 
-(function shuffle() {
-  cards.forEach(card => {
-  let ramdomPos = Math.floor(Math.random() * 30);
-  card.style.order = ramdomPos;
-  });
-})();
+//(function shuffle() {
+//cards.forEach(card => {
+//  let ramdomPos = Math.floor(Math.random() * 30);
+//  card.style.order = ramdomPos;
+//  });
+//})();
 
 cards.forEach(card => card.addEventListener('click', flipCard));
 
@@ -119,7 +135,7 @@ let matchNumber = 1;
 
 function recordLastScore() {
   let newLineScore
-  player = prompt("What is you name?", "Player")
+  //player = prompt("What is you name?", "Player")
   if (player === null) {
     player = 'Player';
   }
