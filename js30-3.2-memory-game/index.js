@@ -61,10 +61,10 @@ function checkForMatch() {
 
 function win() {
   console.log('Winner');
-    modalWindow.style.display = "block"
-    stopTime();
-    text.innerHTML = `<p>You did it!!!</p><p></p><p>You completed the game in ${move} moves.</p><p></p><p>Will you try again?</p>`
-    recordLastScore()
+  modalWindow.style.display = "block"
+  stopTime();
+  text.innerHTML = `<p>You did it!!!</p><p></p><p>You completed the game in ${move} moves.</p><p></p><p>Will you try again?</p>`
+  recordLastScore()
 }
 
 function disableCards() {
@@ -87,12 +87,12 @@ function resetBoard() {
   [firstCard, secondCard] = [null, null];
 }
 
-//(function shuffle() {
-//cards.forEach(card => {
-//  let ramdomPos = Math.floor(Math.random() * 30);
-//  card.style.order = ramdomPos;
-//  });
-//})();
+(function shuffle() {
+cards.forEach(card => {
+  let ramdomPos = Math.floor(Math.random() * 30);
+  card.style.order = ramdomPos;
+  });
+})();
 
 cards.forEach(card => card.addEventListener('click', flipCard));
 
